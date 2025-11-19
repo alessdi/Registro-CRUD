@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tarea registro</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Encabezado -->
+  <header class="site-header">
+    <div class="header-inner">
+      <h1>Tarea registro</h1>
+    </div>
+  </header>
+
+  <div class="page">
+    <div class="container-flex">
+      <!-- Panel Registro -->
+      <div class="panel form-panel">
+        <form id="userForm">
+          <h1>Registro</h1>
+
+          <label for="name">Nombre</label>
+          <input id="name" name="nombre" type="text" />
+
+          <label for="lastname">Apellido</label>
+          <input id="lastname" name="apellido" type="text" />
+
+          <label>Sexo</label>
+          <div class="segmented">
+            <input type="radio" id="sx_h" name="sexo" value="h" />
+            <label for="sx_h">Hombre</label>
+
+            <input type="radio" id="sx_m" name="sexo" value="m" />
+            <label for="sx_m">Mujer</label>
+
+            <input type="radio" id="sx_o" name="sexo" value="o" />
+            <label for="sx_o">Otro</label>
+          </div>
+
+          <label for="fh_nac">Fecha de nacimiento</label>
+          <input type="date" id="fh_nac" name="fh_nac" />
+
+          <label for="rol">Escoge tu rol</label>
+          <select name="id_rol" id="rol">
+            <option value="1">Alumno</option>
+            <option value="2">Profesor</option>
+            <option value="3">Administrativo</option>
+            <option value="4">Otro</option>
+          </select>
+
+          <label for="calificacion">Calificación</label>
+          <input id="calificacion" name="calificacion" type="number" min="0" max="100" />
+
+          <input type="submit" value="Guardar" />
+        </form>
+      </div>
+
+      <!-- Panel Tabla -->
+      <div class="panel table-panel">
+        <div class="table-panel-inner">
+          <div class="toolbar">
+            <h2>Listado de Personas</h2>
+            <button id="btnNuevo" class="btn">Nuevo</button>
+          </div>
+
+          <div id="status" class="status-banner">Cargando datos...</div>
+          <div id="toast" class="toast" aria-live="polite"></div>
+
+          <table id="tabla">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Sexo</th>
+                <th>Cumpleaños</th>
+                <th>Rol</th>
+                <th>Calificación</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Sexo</th>
+                <th>Cumpleaños</th>
+                <th>Rol</th>
+                <th>Calificación</th>
+                <th>Acciones</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modalOverlay" class="overlay"></div>
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <h3 id="modalTitle">Nueva persona</h3>
+      <button id="modalClose" class="btn btn-light" aria-label="Cerrar">✕</button>
+    </div>
+
+    <div id="modalErrors" class="errors" style="display:none;"></div>
+
+    <form id="modalForm">
+      <label>Nombre
+        <input id="nombre" name="nombre" type="text" required />
+      </label>
+      <label>Apellido
+        <input id="apellido" name="apellido" type="text" required />
+      </label>
+
+      <fieldset class="inline">
+        <legend>Sexo</legend>
+        <div class="segmented">
+          <input type="radio" id="msx_h" name="sexo" value="h" required />
+          <label for="msx_h">Hombre</label>
+
+          <input type="radio" id="msx_m" name="sexo" value="m" />
+          <label for="msx_m">Mujer</label>
+
+          <input type="radio" id="msx_o" name="sexo" value="o" />
+          <label for="msx_o">Otro</label>
+        </div>
+      </fieldset>
+
+      <label>Fecha de nacimiento
+        <input id="fh_nac" type="date" required />
+      </label>
+
+      <label>Rol
+        <select id="id_rol" name="id_rol" required>
+          <option value="1">Alumno</option>
+          <option value="2">Profesor</option>
+          <option value="3">Administrativo</option>
+          <option value="4">Otro</option>
+        </select>
+      </label>
+
+      <label>Calificación
+        <input id="calificacion" name="calificacion" type="number" min="0" max="100" step="1" placeholder="Opcional" />
+      </label>
+
+      <div class="modal-actions">
+        <button type="submit" class="btn">Guardar</button>
+        <button type="button" class="btn btn-light" id="modalClose2">Cancelar</button>
+      </div>
+
+      <div id="modalLoading" class="modal-loading" style="display:none;">Procesando...</div>
+    </form>
+  </div>
+
+  <script src="personas.js"></script>
+</body>
+</html>
